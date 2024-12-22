@@ -83,7 +83,7 @@ class _otpState extends State<otp> {
                     Container(
                       width: scr.width * 0.12,
                       child: Center(
-                        child: textfield(
+                        child: textfieldd(
                             Colors.white,
                             Colors.grey,
                             Color(0xfffc6111),
@@ -100,7 +100,7 @@ class _otpState extends State<otp> {
                     Container(
                       width: scr.width * 0.12,
                       child: Center(
-                        child: textfield(
+                        child: textfieldd(
                             Colors.white,
                             Colors.grey,
                             Color(0xfffc6111),
@@ -132,7 +132,7 @@ class _otpState extends State<otp> {
                     Container(
                       width: scr.width * 0.12,
                       child: Center(
-                        child: textfield(
+                        child: textfieldd(
                             Colors.white,
                             Colors.grey,
                             Color(0xfffc6111),

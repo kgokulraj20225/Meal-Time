@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:meal_time/allfun.dart';
+import 'package:meal_time/api_cal/api_cal.dart';
 import 'package:meal_time/home/home_page/buying_food.dart';
+import 'package:meal_time/home/home_page/homepage.order_place.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
 
 class home_page extends StatefulWidget {
   const home_page({super.key});
@@ -11,48 +15,71 @@ class home_page extends StatefulWidget {
 }
 
 class _home_pageState extends State<home_page> {
+  dynamic fullname = "";
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _profilename();
+  }
+
+  Future<void> _profilename() async {
+    SharedPreferences pre = await SharedPreferences.getInstance();
+    setState(() {
+      fullname = pre.getString("name");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Color(0xfffdfdfd),
-        appBar: AppBar(
-            backgroundColor: Color(0xfffdfdfd),
-            title: text(
-                "Good morning Gokulraj!", Colors.black, 25, FontWeight.bold),
-            actions: [
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.shopping_cart,
-                    size: 30,
-                  )),
-            ],
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(60),
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: 10.0,
-                ),
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        if (!didPop) {
+          SystemNavigator.pop();
+        }
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          backgroundColor: Color(0xfffdfdfd),
+          appBar: AppBar(
+              backgroundColor: Color(0xfffdfdfd),
+              title: text(
+                  "Good morning $fullname!", Colors.black, 25, FontWeight.bold),
+              actions: [
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.shopping_cart,
+                      size: 30,
+                    )),
+              ],
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(60),
                 child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 350,
-                    child: textfield2(
-                        Color(0xfffdfdfd),
-                        Colors.grey,
-                        Color(0xfffc6111),
-                        10,
-                        Offset(0, 8),
-                        BorderRadius.circular(30),
-                        EdgeInsets.all(10),
-                        "Search food"),
+                  padding: EdgeInsets.only(
+                    left: 10.0,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 350,
+                      child: textfield2(
+                          Color(0xfffdfdfd),
+                          Colors.grey,
+                          Color(0xfffc6111),
+                          10,
+                          Offset(0, 8),
+                          BorderRadius.circular(30),
+                          EdgeInsets.all(10),
+                          "Search food"),
+                    ),
                   ),
                 ),
-              ),
-            )),
-        body: main_page(),
+              )),
+          body: main_page(),
+        ),
       ),
     );
   }
@@ -206,7 +233,11 @@ class _main_pageState extends State<main_page> {
                   "Cheese Pizza",
                   "3.5",
                   "Minutes in the Meal Time",
-                  pay_chas_food(),
+                  pay_chas_food(
+                      data:
+                          "https://media.istockphoto.com/id/1442417585/photo/person-getting-a-piece-of-cheesy-pepperoni-pizza.jpg?s=612x612&w=0&k=20&c=k60TjxKIOIxJpd4F4yLMVjsniB4W1BpEV4Mi_nb4uJU=" ??
+                              "no image",
+                      data1: 1500 ?? 1500),
                   context),
             ),
             Padding(
@@ -216,7 +247,12 @@ class _main_pageState extends State<main_page> {
                   "Pizza with salami, tomatoes and cheese, pickles",
                   "3.5",
                   "Minutes in the Meal Time",
-                  home_page(),
+                  pay_chas_food(
+                    data:
+                        "https://media.istockphoto.com/id/1377372234/photo/pizza-with-salami-bell-pepper-tomatoes-and-cheese-pickles-bacon-and-sausages-on-a-light.jpg?s=612x612&w=0&k=20&c=Cw2GlLY474sFLmBm4IFsSoSXV4wHZM-ub691aaDqLlw=" ??
+                            "no image",
+                    data1: 1000 ?? 1000,
+                  ),
                   context),
             ),
             Padding(
@@ -226,7 +262,11 @@ class _main_pageState extends State<main_page> {
                   "Cheese Pizza",
                   "3.5",
                   "Minutes in the Meal Time",
-                  home_page(),
+                  pay_chas_food(
+                      data:
+                          "https://media.istockphoto.com/id/1303119992/photo/pizza_margerita.jpg?s=612x612&w=0&k=20&c=0HZZMC10ySBYvMVAKUNzknkQ1E74q8NKwTV5_K6WK6M=" ??
+                              "no image",
+                      data1: 1600 ?? 1600),
                   context),
             ),
             Padding(
@@ -236,7 +276,11 @@ class _main_pageState extends State<main_page> {
                   "Cheese Pizza",
                   "3.5",
                   "Minutes in the Meal Time",
-                  home_page(),
+                  pay_chas_food(
+                      data:
+                          "https://media.istockphoto.com/id/1303119992/photo/pizza_margerita.jpg?s=612x612&w=0&k=20&c=0HZZMC10ySBYvMVAKUNzknkQ1E74q8NKwTV5_K6WK6M=" ??
+                              "no image",
+                      data1: 1600 ?? 1600),
                   context),
             ),
             Padding(
@@ -246,7 +290,11 @@ class _main_pageState extends State<main_page> {
                   "Cheese Pizza",
                   "3.5",
                   "Minutes in the Meal Time",
-                  home_page(),
+                  pay_chas_food(
+                      data:
+                          "https://media.istockphoto.com/id/1303119992/photo/pizza_margerita.jpg?s=612x612&w=0&k=20&c=0HZZMC10ySBYvMVAKUNzknkQ1E74q8NKwTV5_K6WK6M=" ??
+                              "no image",
+                      data1: 1600 ?? 1600),
                   context),
             ),
             Row(

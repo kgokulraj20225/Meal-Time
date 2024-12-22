@@ -29,6 +29,7 @@ Widget textfield(
     EdgeInsets ei,
     String text,
     String retunnn,
+    TextEditingController tec,
     TextInputType inputtype) {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 40.0, vertical: 13.0),
@@ -36,6 +37,7 @@ Widget textfield(
       BoxShadow(color: c2, blurRadius: int, offset: offset, spreadRadius: 3)
     ]),
     child: TextFormField(
+      controller: tec,
       style: TextStyle(color: c3),
       cursorColor: c3,
       keyboardType: inputtype,
@@ -58,6 +60,104 @@ Widget textfield(
             )),
       ),
     ),
+  );
+}
+
+//reset password page
+Widget textfieldd(
+    Color c1,
+    Color c2,
+    Color c3,
+    double int,
+    Offset offset,
+    BorderRadius br,
+    IconData icon,
+    EdgeInsets ei,
+    String text,
+    String retunnn,
+    // TextEditingController tec,
+    TextInputType inputtype) {
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: 40.0, vertical: 13.0),
+    decoration: BoxDecoration(borderRadius: br, color: c1, boxShadow: [
+      BoxShadow(color: c2, blurRadius: int, offset: offset, spreadRadius: 3)
+    ]),
+    child: TextFormField(
+      // controller: tec,
+      style: TextStyle(color: c3),
+      cursorColor: c3,
+      keyboardType: inputtype,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return retunnn;
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: text,
+        labelStyle: TextStyle(color: c3),
+        contentPadding: ei,
+        suffixIcon: Icon(icon),
+        border: OutlineInputBorder(
+            borderRadius: br,
+            borderSide: BorderSide.merge(
+              BorderSide(color: Colors.red),
+              BorderSide.none,
+            )),
+      ),
+    ),
+  );
+}
+
+Widget addresstextfield(
+    Color c1,
+    Color c2,
+    Color c3,
+    double int,
+    Offset offset,
+    BorderRadius br,
+    EdgeInsets ei,
+    String text1,
+    String text2,
+    String retunnn,
+    TextEditingController tec,
+    TextInputType inputtype) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Container(
+        child: text(text1, Colors.black, 16, FontWeight.bold),
+      ),
+      Container(
+        margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 13.0),
+        decoration: BoxDecoration(borderRadius: br, color: c1, boxShadow: [
+          BoxShadow(color: c2, blurRadius: int, offset: offset, spreadRadius: 3)
+        ]),
+        child: TextFormField(
+          controller: tec,
+          style: TextStyle(color: c3),
+          cursorColor: c3,
+          keyboardType: inputtype,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return retunnn;
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+            hintText: text2,
+            hintStyle: TextStyle(color: c3),
+            contentPadding: ei,
+            border: OutlineInputBorder(
+                borderRadius: br,
+                borderSide: BorderSide.merge(
+                  BorderSide(color: Colors.red),
+                  BorderSide.none,
+                )),
+          ),
+        ),
+      ),
+    ],
   );
 }
 
@@ -154,6 +254,7 @@ Widget textfielld2(
     double ver,
     String text,
     String retun,
+    TextEditingController txt,
     TextInputType inputtype) {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: hor, vertical: ver),
@@ -163,6 +264,7 @@ Widget textfielld2(
     ),
     child: TextFormField(
       style: TextStyle(color: c3),
+      controller: txt,
       cursorColor: c3,
       keyboardType: inputtype,
       validator: (value) {
@@ -192,6 +294,7 @@ Widget datetextfielld2(
     double wid,
     // double hor,
     // double ver,
+    TextEditingController txt,
     String text,
     String retun,
     TextInputType inputtype) {
@@ -206,6 +309,7 @@ Widget datetextfielld2(
     child: TextFormField(
       style: TextStyle(color: c3),
       cursorColor: c3,
+      controller: txt,
       keyboardType: inputtype,
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -291,7 +395,7 @@ Widget catego(String img, String t1, String t2, BoxFit bf, BoxShape bs,
           left: 55,
           child: Container(
             height: 100,
-            width: 300,
+            width: siize.width * 0.76,
             decoration: BoxDecoration(
               color: Color(0xfffdfdfd),
               borderRadius: BorderRadius.only(
@@ -359,7 +463,7 @@ Widget catego(String img, String t1, String t2, BoxFit bf, BoxShape bs,
           ),
         ),
         Positioned(
-          left: 330,
+          left: siize.width * 0.85,
           top: 29,
           child: Container(
             height: 40,
@@ -398,19 +502,20 @@ Widget catego(String img, String t1, String t2, BoxFit bf, BoxShape bs,
   );
 }
 
-Widget catego1(
-    String img, String t1, String t2, BoxFit bf, BoxShape bs, Widget page1) {
+Widget catego1(String img, String t1, String t2, BoxFit bf, BoxShape bs,
+    Widget page1, BuildContext con) {
+  final siize = MediaQuery.of(con).size;
   return Container(
     // color: Colors.yellow,
     height: 130,
-    width: 400,
+    width: siize.width * 1,
     child: Stack(
       children: [
         Positioned(
             left: 55,
             child: Container(
               height: 100,
-              width: 300,
+              width: siize.width * 0.76,
               decoration: BoxDecoration(
                   color: Color(0xfffdfdfd),
                   borderRadius: BorderRadius.only(
@@ -468,7 +573,7 @@ Widget catego1(
           ),
         ),
         Positioned(
-            left: 330,
+            left: siize.width * 0.85,
             top: 29,
             child: Container(
               height: 40,

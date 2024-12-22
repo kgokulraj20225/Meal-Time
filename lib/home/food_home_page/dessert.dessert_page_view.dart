@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meal_time/allfun.dart';
-import 'package:meal_time/home/food_home_page/dessert_page.bannerview.dart';
+// import 'package:meal_time/home/food_home_page/dessert_page.bannerview.dart';
+
+import '../home_page/buying_food.dart';
 
 class dessert_view extends StatefulWidget {
   const dessert_view({super.key});
@@ -70,33 +72,48 @@ class _dessert2State extends State<dessert2> {
               height: 10,
             ),
             banner(
-              "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600",
-              "French Berrys Honey Cake",
-              "4.9",
-              "Minute by tuk tuk \t Desserts",
-              DessertPage(),
-              context,
-            ),
+                "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600",
+                "French Berrys Honey Cake",
+                "4.9",
+                "Minute by tuk tuk \t Desserts",
+                pay_chas_food(
+                    data:
+                        "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600" ??
+                            "no image",
+                    data1: 600 ?? 600),
+                context),
             banner(
                 "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600",
                 "Waffels with Stawbeery",
                 "4.0",
                 "Cake by tuk tuk \t Desserts",
-                DessertPage(),
+                pay_chas_food(
+                    data:
+                        "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600" ??
+                            "no image",
+                    data1: 400 ?? 400),
                 context),
             banner(
                 "https://images.pexels.com/photos/827513/pexels-photo-827513.jpeg?auto=compress&cs=tinysrgb&w=600",
                 "Desserts with BlueBeery",
                 "4.5",
                 "Cake by Meal Time \t Desserts",
-                DessertPage(),
+                pay_chas_food(
+                    data:
+                        "https://images.pexels.com/photos/827513/pexels-photo-827513.jpeg?auto=compress&cs=tinysrgb&w=600" ??
+                            "no image",
+                    data1: 350 ?? 350),
                 context),
             banner(
                 "https://images.pexels.com/photos/2693447/pexels-photo-2693447.jpeg?auto=compress&cs=tinysrgb&w=600",
                 "PanCakeDesserts with Cherry ",
                 "3.8",
                 "Dessert by Racer \t Desserts",
-                DessertPage(),
+                pay_chas_food(
+                    data:
+                        "https://images.pexels.com/photos/2693447/pexels-photo-2693447.jpeg?auto=compress&cs=tinysrgb&w=600" ??
+                            "no image",
+                    data1: 160 ?? 160),
                 context),
           ],
         ),

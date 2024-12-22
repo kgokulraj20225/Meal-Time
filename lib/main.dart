@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:meal_time/home/home.dart';
+import 'package:meal_time/login_details/registry.dart';
 import 'package:meal_time/splash%20screen.dart';
 import 'allfun.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(first());
 }
+
+String ip = "192.168.144.81";
 
 class first extends StatefulWidget {
   const first({super.key});
@@ -18,6 +25,11 @@ class _firstState extends State<first> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      // initialRoute: '/signup',
+      // routes: {
+      //   '/signup': (context) => create(),
+      //   '/home': (context) => HomePageWithTabs(),
+      // },
       home: First_page(),
     );
   }

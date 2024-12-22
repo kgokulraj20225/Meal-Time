@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:meal_time/home/home.dart';
-
-import 'package:meal_time/home/food_home_page/menu.dart';
 import 'package:meal_time/login_details/reset%20password.dart';
 import 'package:meal_time/main.dart';
 import 'package:meal_time/login_details/registry.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../allfun.dart';
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 
 class LoginApp extends StatefulWidget {
   @override
@@ -37,32 +38,76 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // List<> user =[];
   final TextEditingController _username = TextEditingController();
   final TextEditingController _password = TextEditingController();
   bool _obscureText = true;
-  // final _form = GlobalKey<FormState>();
-
+  final _form = GlobalKey<FormState>();
+  String a = "";
+  String b = "";
   void _toggleVisibility() {
     setState(() {
       _obscureText = !_obscureText;
     });
   }
 
+  // void initState() {
+  //   super.initState();
+  //   _login();
+  // }
+
+  // Future<void> _login() async {
+  //   SharedPreferences perf = await SharedPreferences.getInstance();
+  //   await perf.setBool("login", true);
+  //   setState(() {
+  //     a = perf.getString("name") ?? "no value";
+  //     b = perf.getString("userpassword") ?? "no value";
+  //   });
+  //   if (_form.currentState!.validate()) {
+  //     if (_username.text == a && _password.text == b) {
+  //       Navigator.pushReplacement(context,
+  //           MaterialPageRoute(builder: (context) => HomePageWithTabs()));
+  //     } else {
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //           SnackBar(content: Text("Invalid username or password")));
+  //     }
+  //   }
+  // }
+
   Future<void> _login() async {
-    String username = _username.text;
-    String password = _password.text;
+    if (_form.currentState!.validate()) {
+      final String apiurl = "http://$ip:8000/Authentication_app/login/";
 
-    if (username == 'gokul' && password == 'gokul') {
-      SharedPreferences perffs = await SharedPreferences.getInstance();
-      await perffs.setBool("login", true);
-      await perffs.setString("username", username);
-      await perffs.setString("password", password);
+      try {
+        final response = await http.post(Uri.parse(apiurl),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode(
+                {"username": _username.text, "password": _password.text}));
+        if (response.statusCode == 200) {
+          final data = jsonDecode(response.body);
+          SharedPreferences pref = await SharedPreferences.getInstance();
+          await pref.setBool("login", true);
+          await pref.setString("access", data['access']);
+          await pref.setString("refresh", data['refresh']);
 
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => homee()));
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Invalid username or password")));
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    HomePageWithTabs()), // Replace with your home page
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Invalid username or password')),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
+      }
     }
   }
 
@@ -73,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
       height: screenSize.height * 1,
       child: SingleChildScrollView(
         child: Form(
-          // key: _form,
+          key: _form,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

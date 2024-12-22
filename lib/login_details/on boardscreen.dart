@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_time/login_details/registry.dart';
+import 'package:meal_time/login_details/signin_choose.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../allfun.dart';
 import '../home/home.dart';
@@ -32,7 +33,7 @@ class _OnboardState extends State<Onboard> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: _login ? homee() : On(),
+      home: _login ? HomePageWithTabs() : On(),
     );
   }
 }
@@ -145,40 +146,34 @@ class _OnState extends State<On> {
                     ),
                   ),
 
-                  // Create Account Button
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => create()));
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(bottom: 100), // Adjusting margin
-                      width: 300,
-                      child: Chip(
-                        backgroundColor: Color(0xfffdfdfd),
+                  OutlinedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => sign_choose()));
+                      },
+                      style: OutlinedButton.styleFrom(
                         side: BorderSide(
-                          color: Color(0xfffc6111),
-                          width: 2,
-                        ),
+                            color: Color(0xfffc6111)), // Set border color
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        label: Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Text(
-                              "Create an Account",
-                              style: TextStyle(
-                                color: Color(0xfffc6111),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
+                          borderRadius:
+                              BorderRadius.circular(40), // Rounded corners
                         ),
                       ),
-                    ),
-                  ),
+                      child: SizedBox(
+                        width: 250,
+                        height: 60, // Set the desired width
+                        child: Center(
+                          child: Text(
+                            "Create an Account",
+                            style: TextStyle(
+                                color: Color(0xfffc6111),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ), // Ensure text is centered
+                        ),
+                      ))
                 ],
               ),
             ],

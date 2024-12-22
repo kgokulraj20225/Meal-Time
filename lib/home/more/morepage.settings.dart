@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_time/allfun.dart';
+import 'package:meal_time/home/more/setting.save_address.dart';
 
 class notification extends StatefulWidget {
   const notification({super.key});
@@ -43,6 +44,16 @@ class sett extends StatefulWidget {
 class _settState extends State<sett> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+              padding: const EdgeInsets.only(
+            top: 28.0,
+          )),
+          more_caterage(Icons.save, "Saved Address", save_address()),
+        ],
+      ),
+    );
   }
 }

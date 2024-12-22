@@ -192,7 +192,8 @@ import 'package:flutter/material.dart';
 import 'package:meal_time/allfun.dart';
 import 'package:meal_time/home/food_home_page/dessert.dessert_page_view.dart';
 
-import 'Beverages.dart';
+import '../home.dart';
+import 'Juice.dart';
 import 'Food.dart';
 import 'Promotions.dart';
 
@@ -206,58 +207,67 @@ class menu extends StatefulWidget {
 class _menuState extends State<menu> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        if (!didPop) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    HomePageWithTabs()), // Navigate to home_page
+          );
+        }
+      },
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: DefaultTabController(
-          length: 4,
-          animationDuration: Durations.short1,
-          child: Scaffold(
-            appBar: AppBar(
-                backgroundColor: Color(0xfffdfdfd),
-                title: Padding(
+        home: Scaffold(
+          appBar: AppBar(
+              backgroundColor: Color(0xfffdfdfd),
+              title: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Menu",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 35),
+                ),
+              ),
+              actions: [
+                Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Menu",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 35),
+                  child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.shopping_cart,
+                        size: 30,
+                      )),
+                )
+              ],
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(60.0), // Adjust height as needed
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: 350,
+                    child: textfield2(
+                        Color(0xfffdfdfd),
+                        Colors.grey,
+                        Color(0xfffc6111),
+                        10,
+                        Offset(0, 8),
+                        BorderRadius.circular(30),
+                        EdgeInsets.all(10),
+                        "Search food"),
                   ),
                 ),
-                actions: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.shopping_cart,
-                          size: 30,
-                        )),
-                  )
-                ],
-                bottom: PreferredSize(
-                  preferredSize:
-                      Size.fromHeight(60.0), // Adjust height as needed
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 350,
-                      child: textfield2(
-                          Color(0xfffdfdfd),
-                          Colors.grey,
-                          Color(0xfffc6111),
-                          10,
-                          Offset(0, 8),
-                          BorderRadius.circular(30),
-                          EdgeInsets.all(10),
-                          "Search food"),
-                    ),
-                  ),
-                )),
-            backgroundColor: Color(0xfffdfdfd),
-            body: menu1(),
-          ),
-        ));
+              )),
+          backgroundColor: Color(0xfffdfdfd),
+          body: menu1(),
+        ),
+      ),
+    );
   }
 }
 
@@ -280,7 +290,8 @@ class _menu1State extends State<menu1> {
         child: Stack(
           children: [
             Container(
-              height: screen.height * 1,
+              height: 900,
+              // color: Colors.red,
               width: screen.width * 1,
             ),
             Positioned(
@@ -300,29 +311,26 @@ class _menu1State extends State<menu1> {
                           offset: Offset(0, 10),
                           blurRadius: 9)
                     ]),
-                height: screen.height *
-                    0.85, // Adjusted to a percentage of the screen height
-                width: screen.width *
-                    0.25, // Adjusted to a percentage of the screen width
+                height: 770, // Adjusted to a percentage of the screen height
+                width: 130, // Adjusted to a percentage of the screen width
               ),
             ),
             Positioned(
-              top: screen.height *
-                  0.07, // Adjusted to a percentage of the screen height
+              top: 60, // Adjusted to a percentage of the screen height
               child: catego1(
                   "https://t3.ftcdn.net/jpg/03/13/00/70/240_F_313007059_Lbgy6IGzphFh9xFpNOMSa8AaEdg89yVL.jpg",
                   "Food",
                   "120 Items",
                   BoxFit.cover,
                   BoxShape.circle,
-                  Food()),
+                  Food(),
+                  context),
             ),
             Positioned(
-                top: screen.height *
-                    0.25, // Adjusted to a percentage of the screen height
+                top: 200, // Adjusted to a percentage of the screen height
                 child: catego(
                     "https://t4.ftcdn.net/jpg/02/09/31/77/240_F_209317774_yDBNUzK0JuAB3HgBrHFlAm0Xi8GrbKKP.jpg",
-                    "Beverages",
+                    "Juices",
                     "220 Items",
                     BoxFit.cover,
                     BoxShape.rectangle,
@@ -330,18 +338,18 @@ class _menu1State extends State<menu1> {
                     bev(),
                     context)),
             Positioned(
-                top: screen.height *
-                    0.45, // Adjusted to a percentage of the screen height
+                top: 340,
+                // Adjusted to a percentage of the screen height
                 child: catego1(
                     "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600",
                     "Desserts",
                     "155 Items",
                     BoxFit.cover,
                     BoxShape.circle,
-                    dessert_view())),
+                    dessert_view(),
+                    context)),
             Positioned(
-                top: screen.height *
-                    0.65, // Adjusted to a percentage of the screen height
+                top: 480, // Adjusted to a percentage of the screen height
                 child: catego(
                     "https://t3.ftcdn.net/jpg/02/81/76/44/240_F_281764445_OWXUobpyBgxQw6LU3sckSY0nGGVTeoXs.jpg",
                     "Promotions",
@@ -352,15 +360,15 @@ class _menu1State extends State<menu1> {
                     pro(),
                     context)),
             Positioned(
-                top: screen.height *
-                    0.85, // Adjusted to a percentage of the screen height
+                top: 620, // Adjusted to a percentage of the screen height
                 child: catego1(
                     "https://images.pexels.com/photos/851555/pexels-photo-851555.jpeg?auto=compress&cs=tinysrgb&w=400",
                     "Coffee",
                     "255 Items",
                     BoxFit.cover,
                     BoxShape.circle,
-                    dessert_view())),
+                    dessert_view(),
+                    context)),
           ],
         ),
       ),
