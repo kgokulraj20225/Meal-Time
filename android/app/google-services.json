@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "36782333981",
+    "project_id": "meal-time-70222",
+    "storage_bucket": "meal-time-70222.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36782333981:android:d10e7df3b9ec594a00e6f4",
+        "android_client_info": {
+          "package_name": "com.example.meal_time"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "36782333981-uqpkfubuvhocipeh1ecjl9i2t42fdq1l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.meal_time",
+            "certificate_hash": "5a644d7c40f9575fdfa5940885c78dc74986860e"
+          }
+        },
+        {
+          "client_id": "36782333981-bek638h9iqk1pqg364v2vu9nqm5nol65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmd5BmE_8K3ZZ28jBgHBn6HqHHgkBTpwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "36782333981-bek638h9iqk1pqg364v2vu9nqm5nol65.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

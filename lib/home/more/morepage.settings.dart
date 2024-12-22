@@ -18,7 +18,7 @@ class _notificationState extends State<notification> {
               Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_back_ios)),
-        title: text("Notifications", Colors.black, 30, FontWeight.bold),
+        title: text("Settings", Colors.black, 30, FontWeight.bold),
         actions: [
           IconButton(
               onPressed: () {},
@@ -28,6 +28,21 @@ class _notificationState extends State<notification> {
               ))
         ],
       ),
+      body: sett(),
     );
+  }
+}
+
+class sett extends StatefulWidget {
+  const sett({super.key});
+
+  @override
+  State<sett> createState() => _settState();
+}
+
+class _settState extends State<sett> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
